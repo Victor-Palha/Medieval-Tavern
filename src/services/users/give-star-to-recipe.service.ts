@@ -8,6 +8,7 @@ export class GiveStarToRecipeService{
     ){}
 
     async execute(recipeId: string, userId: string){
+        let recipeResponse: any
         const recipe = await this.recipeModel.findById(recipeId);
         const user = await this.userModel.findById(userId);
 
@@ -20,25 +21,31 @@ export class GiveStarToRecipeService{
         }
         if(user.myFavorites.includes(recipe._id)){
             await this.userModel.findByIdAndUpdate(user._id, {
-                myFavorites: user.myFavorites.filter(favorite => favorite !== recipe._id)
+                $unset: {
+                    myFavorites: recipe._id
+                }
             })
+
             await this.recipeModel.findByIdAndUpdate(recipe._id, {
                 stars: recipe.stars - 1
             })
+
+            recipeResponse = `A receita ${recipe.name} foi removida dos favoritos!`
         }else{
+
+            await this.userModel.findByIdAndUpdate(user._id, {
+                $push: {
+                    myFavorites: recipe._id
+                }
+            })
+
             await this.recipeModel.findByIdAndUpdate(recipe._id, {
                 stars: recipe.stars + 1
             })
+
+            recipeResponse = `A receita ${recipe.name} foi adicionada aos favoritos!`
         }
 
-        
-
-        await this.userModel.findByIdAndUpdate(user._id, {
-            $push: {
-                myFavorites: recipe._id
-            }
-        })
-
-        return {recipe};
+        return {recipeResponse};
     }
 }
