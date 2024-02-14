@@ -12,7 +12,6 @@ export async function createRecipeController(req: Request, res:Response){
         instructions: z.array(z.string()),
         description: z.string(),
         image: z.string(),
-        userId: z.string()
     })
 
     const data = recipeSchema.parse(req.body);
@@ -20,9 +19,14 @@ export async function createRecipeController(req: Request, res:Response){
     const service = MakeCreateRecipeService();
 
     try {
-        await service.execute(data);
-        return res.status(201);
+        await service.execute({
+            userId: req.user_id.sub,
+            ...data
+        });
+        return res.status(201).json({message: "Receita criada com sucesso!"});
     } catch (error) {
-        return res.status(400).json({message: error});
+        if(error instanceof Error){
+            return res.status(400).json({message: error.message});
+        }
     }
 }

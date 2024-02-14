@@ -1,7 +1,12 @@
-import { Application } from "express";
+import { Router } from "express";
 import { createRecipeController } from "./create-recipe.controller";
 import { jwtMiddleware } from "../../middlewares/jwt.middleware";
+import { fetchRecipesController } from "./fetch-recipes.controller";
 
-export async function routesRecipes(app: Application){
-    app.post("/recipes", jwtMiddleware, createRecipeController)
-}
+const routesRecipes = Router();
+
+routesRecipes
+.post("/recipes", jwtMiddleware, createRecipeController)
+.get("/recipes", fetchRecipesController)
+
+export { routesRecipes }

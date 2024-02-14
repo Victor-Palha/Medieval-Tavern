@@ -15,8 +15,10 @@ export async function createUserController(req: Request, res: Response){
 
     try {
         await service.execute(data);
-        return res.status(201);
+        return res.status(201).json({message: "Usuário criado com sucesso!"});
     } catch (error) {
-        return res.status(400).json({message: error});
+        if(error instanceof Error){
+            return res.status(400).json({message: error.message});
+        }
     }
 }

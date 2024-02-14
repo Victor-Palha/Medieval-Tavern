@@ -17,6 +17,8 @@ export async function authUserController(req: Request, res: Response){
 
         return res.status(200).json(token);
     } catch (error) {
-        return res.status(400).json({message: error});
+        if(error instanceof Error){
+            return res.status(400).json({message: error.message});
+        }
     }
 }
