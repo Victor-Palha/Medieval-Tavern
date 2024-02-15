@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "API to a app for create e share recipes",
   "main": "index.js",
+  "tsup": {
+    "entry": ["src", "!src/public/**"]
+  },
   "scripts": {
-    "dev": "tsx watch --env-file .env src/server.ts"
+    "dev": "tsx watch --env-file .env src/server.ts",
+    "build": "tsc && cp -r ./src/public build/",
+    "start": "node --env-file .env build/server.js"
   },
   "repository": {
     "type": "git",
