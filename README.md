@@ -22,51 +22,66 @@ Bem-vindo ao Medieval Tavern, um projeto de API que combina duas das minhas maio
 - Para rotas que necessitam de autenticação é usado um token quando o usuário faz login: `Authorization: Bearer your-token`
 ### Rotas de Usuário
 - `POST /signup` - Cria um novo usuário
-```json
-// Request body
-/*
+- **REQUEST TYPE**
+```typescript
+{
     name: string,
     email: string,
-    password: string min 6 characters
-*/
+    password: string
+}
+```
+- **REQUEST EXAMPLE**
+```json
 {
     "name": "John Doe",
     "email": "test@test.com",
     "password": "123456"
 }
 ```
-- `POST /signin` - Faz login do usuário
+- **RESPONSE - STATUS 201**
 ```json
-// Request body
-/*
+{
+    "message": "Usuário criado com sucesso!"
+}
+```
+
+- `POST /signin` - Faz login do usuário
+- **REQUEST TYPE**
+```typescript
+{
     email: string,
     password: string
-*/
+}
+```
+- **REQUEST EXAMPLE**
+```json
 {
     "email": "test@test.com",
     "password": "123456"
 }
-
-// Response body
-/*
-{
-    token: string
-}
-*/
 ```
-- `POST /recipes` - Cria uma nova receita
+- **RESPONSE - STATUS 200**
 ```json
-// Request body
-/*
+{
+    "token": "your-token"
+}
+```
+- `POST /recipes` - Cria uma nova receita - **NECESSITA DE AUTENTICAÇÃO POR MEIO DE UM BEARER TOKEN**
+- **REQUEST TYPE**
+```typescript
+{
     name: string,
-    origin: string,
-    tags: array(string),
+    origin: string[],
+    tags: string[],
     serves: number,
-    ingredients: array(string),
-    instructions: array(string),
+    ingredients: string[],
+    instructions: string[],
     description: string,
-    image: string,
-*/
+    image: string
+}
+```
+- **REQUEST EXAMPLE**
+```json
 {
   "name": "Amphail Braised Beef",
   "origin": "Culinária Incomum",
@@ -78,91 +93,119 @@ Bem-vindo ao Medieval Tavern, um projeto de API que combina duas das minhas maio
   "image": "https://pbs.twimg.com/media/E6syfIuXsAEb92E?format=jpg&name=4096x4096"
 }
 ```
-- `GET /recipes/my-favorites` - Retorna um array com as receitas favoritas do usuário
+- **RESPONSE - STATUS 201**
 ```json
-// Response body
-/*
+{
+    "message": "Receita criada com sucesso!"
+}
+```
+- `GET /recipes/my-favorites` - Retorna um array com as receitas favoritas do usuário - **NECESSITA DE AUTENTICAÇÃO POR MEIO DE UM BEARER TOKEN**
+- **RESPONSE TYPE - ARRAY**
+```typescript
+{
     name: string,
-    origin: string,
-    tags: array(string),
+    origin: string[],
+    tags: string[],
     serves: number,
-    ingredients: array(string),
-    instructions: array(string),
+    ingredients: string[],
+    instructions: string[],
     description: string,
-    image: string,
-*/
+    image: string
+}
+```
+- **RESPONSE EXAMPLE**
+```json
 {
     "recipes": []
 }
 ```
-- `GET /recipes/my` - Retorna um array com as receitas criadas pelo usuário
-```json
-// Response body
-/*
+- `GET /recipes/my` - Retorna um array com as receitas criadas pelo usuário - **NECESSITA DE AUTENTICAÇÃO POR MEIO DE UM BEARER TOKEN**
+- **RESPONSE TYPE - ARRAY**
+```typescript
+{
     name: string,
-    origin: string,
-    tags: array(string),
+    origin: string[],
+    tags: string[],
     serves: number,
-    ingredients: array(string),
-    instructions: array(string),
+    ingredients: string[],
+    instructions: string[],
     description: string,
-    image: string,
-*/
+    image: string
+}
+```
+- **RESPONSE EXAMPLE**
+```json
 {
     "recipes": []
 }
 ```
-- `PATCH /recipes/star/:id` - Adiciona ou remove uma receita dos favoritos do usuário
-```json
-// Request params
-/*
+- `PATCH /recipes/star/:id` - Adiciona ou remove uma receita dos favoritos do usuário - **NECESSITA DE AUTENTICAÇÃO POR MEIO DE UM BEARER TOKEN**
+- **RESPONSE TYPE - REQUEST PARAMS**
+```typescript
+{
     id: string
-*/
+}
+```
+- **RESPONSE EXAMPLE**
+```json
 {
-    "message": "A receita x foi adicionada dos favoritos!"
+    "message": "A receita 'Orc Bacon' foi adicionada dos favoritos!"
 }
 ```
 ### Rotas Públicas
 - `GET /recipes` - Retorna um array com todas as receitas
-```json
-// Response body
-/*
+- **RESPONSE TYPE - ARRAY**
+```typescript
+{
     name: string,
-    origin: string,
-    tags: array(string),
+    origin: string[],
+    tags: string[],
     serves: number,
-    ingredients: array(string),
-    instructions: array(string),
+    ingredients: string[],
+    instructions: string[],
     description: string,
-    image: string,
-*/
+    image: string
+}
+```
+- **RESPONSE EXAMPLE**
+```json
 {
     "recipes": []
 }
 ```
 - `GET /recipes/:id` - Retorna uma receita específica
+- **RESPONSE TYPE - REQUEST PARAMS**
+```typescript
+{
+    id: string
+}
+```
+- **RESPONSE EXAMPLE**
 ```json
-// Response body
-/*
-    name: string,
-    origin: string,
-    tags: array(string),
-    serves: number,
-    ingredients: array(string),
-    instructions: array(string),
-    description: string,
-    image: string,
-*/
 {
     "recipe": {}
 }
 ```
 - `GET /recipes/search` - Retorna um array com as receitas que contém a string pesquisada
+- **REQUEST TYPE - QUERY PARAMS**
+```js
+const response = await fetch('http://localhost:3000/api/recipes/search?q=carne');
+```
+- **RESPONSE TYPE - ARRAY**
+```typescript
+{
+    name: string,
+    origin: string[],
+    tags: string[],
+    serves: number,
+    ingredients: string[],
+    instructions: string[],
+    description: string,
+    image: string
+}
+```
+- **RESPONSE EXAMPLE**
 ```json
-// Request query
-/*
-    q: string
-*/
 {
     "recipes": []
 }
