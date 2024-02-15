@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="assents/_2450aa22-6fdf-40d8-bf2b-4ce58085575a 1.svg" type="image/x-icon">
+    <link rel="stylesheet" href="index.css">
+    <title>Medieval Tavern Documentation</title>
+</head>
+<body>
+    <header class="header">
+        <img src="assents/_2450aa22-6fdf-40d8-bf2b-4ce58085575a 1.svg" alt="Uma espada dourada na frente de um castelo preto rodeado por um escudo escrito 'Food Recipe'">
+        <h1>Medieval Tavern <br> <h2>Documentação</h2></h1>
+    </header>
+    <section class="presentation">
+        <div class="box">
+            <h2>O que é Medieval Tavern, afinal?</h2>
+            <p>Bem-vindo ao Medieval Tavern, um projeto de API que combina duas das minhas maiores paixões: comida e fantasia medieval! Nosso objetivo é compartilhar conhecimento sobre receitas culinárias com temática medieval, embora não se limite apenas a isso. O melhor de tudo? Nossa API é totalmente gratuita para todos os interessados em usá-la e criar seus próprios aplicativos de receitas. E se você quiser contribuir com o projeto, fique à vontade para acessá-lo no<span><a href="https://github.com/Victor-Palha/Medieval-Tavern" target="_blank">GitHub!</a></span></p>
+        </div>
+    </section>
+    <section class="doc">
+        <div class="doc-presentation">
+            <h2>Como utilizar?</h2>
+            <img src="./assents/_65d20361-9389-4d4c-9c44-a57c82b2e795.jpeg" alt="Um elfo confuso na frente de um computador com uma interrogação saindo de sua cabeça">
+            <p>As rotas da API são devididas em as ações que o usuário pode fazer logado e as ações que qualquer pessoa pode utilizar.</p>
+            <p>Ações que o Usuário precisam estar logado incluem criar novas receitas, favoritar receitas e visualizar receitas favoritas ou que criou.</p>
+            <p>Para rotas que necessitam de autenticação é usado um token quando o usuário faz login: <code>Authorization: Bearer your-token</code></p>
+            
+            <p>Todas as rotas precisam ter o prefixo <code>https://test.com</code></p>
+        </div>
+        <div class="endpoints">
+            <h2>Endpoints</h2>
+            <h3>Users</h3>
+            <table>
+                <tr>
+                    <th>Endpoint</th>
+                    <th>Descrição</th>
+                    <th>Método</th>
+                    <th>Autenticação</th>
+                </tr>
+                <tr>
+                    <td>/signup</td>
+                    <td>Cria um novo usuário</td>
+                    <td>POST</td>
+                    <td>Não</td>
+                </tr>
+                <tr>
+                    <td>/signin</td>
+                    <td>Autenticação de usuário</td>
+                    <td>POST</td>
+                    <td>Não</td>
+                </tr>
+                <tr>
+                    <td>/recipes</td>
+                    <td>Cria uma receita</td>
+                    <td>POST</td>
+                    <td>Sim</td>
+                </tr>
+                <tr>
+                    <td>/recipes/my</td>
+                    <td>Mostra todas as receitas que o usuário criou</td>
+                    <td>GET</td>
+                    <td>Sim</td>
+                </tr>
+                <tr>
+                    <td>/recipes/my-favorites</td>
+                    <td>Mostra todas as receitas que o usuário deu estrela</td>
+                    <td>GET</td>
+                    <td>Sim</td>
+                </tr>
+                <tr>
+                    <td>/recipes/star/:id</td>
+                    <td>Dá uma estrela para uma receita</td>
+                    <td>PATCH</td>
+                    <td>Sim</td>
+                </tr>
+            </table>
+
+            <h3>Receitas</h3>
+
+            <table>
+                <tr>
+                    <th>Endpoint</th>
+                    <th>Descrição</th>
+                    <th>Método</th>
+                    <th>Autenticação</th>
+                </tr>
+                <tr>
+                    <td>/recipes</td>
+                    <td>Busca todas as receitas criadas</td>
+                    <td>GET</td>
+                    <td>Não</td>
+                </tr>
+                <tr>
+                    <td>/recipes/:id</td>
+                    <td>Busca uma unica receita</td>
+                    <td>GET</td>
+                    <td>Não</td>
+                </tr>
+                <tr>
+                    <td>/recipes/search</td>
+                    <td>Busca uma receita atráves do query param 'q'</td>
+                    <td>GET</td>
+                    <td>Não</td>
+                </tr>
+            </table>
+        </div>
+        <div class="requests">
+            <h2>Requests e Tipagens</h2>
+            <p>Sobre as tipagens,fazer os requests e como são feito as respostas, tudo isso pode ser conferito clicando aqui!</p>
+        </div>
+    </section>
+</body>
+</html>

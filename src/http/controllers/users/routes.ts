@@ -9,7 +9,7 @@ const routesUsers = Router();
 routesUsers
 .post("/signup", createUserController)
 .post("/signin", authUserController)
-.patch("/star/:id", jwtMiddleware, giveStartToRecipeController)
-.get("/my-favorites", jwtMiddleware, fetchMyFavoritesRecipesController)
+.patch("/recipes/star/:id", jwtMiddleware, giveStartToRecipeController)
+.get("/recipes/my-favorites", jwtMiddleware, fetchMyFavoritesRecipesController)
 
 export { routesUsers }

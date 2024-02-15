@@ -13,6 +13,6 @@ routesRecipes
 .get("/recipes", fetchRecipesController)
 .get("/recipes/my", jwtMiddleware, fetchMyRecipesController)
 .get("/recipes/:id", getUniqueRecipeController)
-.get("/search", searchRecipesController)
+.get("/recipes/search", searchRecipesController)
 
 export { routesRecipes }
