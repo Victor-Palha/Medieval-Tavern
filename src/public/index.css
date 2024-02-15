@@ -124,6 +124,9 @@ body{
     text-shadow: 0 0 2px #F1B711;
     font-size: 1.5rem;
 }
+.requests p a{
+    color: #F1B711;
+}
 
 .endpoints table{
     width: 800px;
@@ -271,9 +274,4 @@ footer{
     .requests p{
         font-size: 1rem;
     }
-
-    .requests p a{
-        color: #F1B711;
-    }
-    
 }
