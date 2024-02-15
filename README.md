@@ -46,6 +46,13 @@ Bem-vindo ao Medieval Tavern, um projeto de API que combina duas das minhas maio
     "email": "test@test.com",
     "password": "123456"
 }
+
+// Response body
+/*
+{
+    token: string
+}
+*/
 ```
 - `POST /recipes` - Cria uma nova receita
 ```json
