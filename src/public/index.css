@@ -242,7 +242,7 @@ footer{
     }
 
     .endpoints{
-        padding: 2rem;
+        padding: 0rem;
     }
 
     .endpoints h2{
@@ -273,5 +273,21 @@ footer{
     
     .requests p{
         font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .header h1{
+        font-size: 1.75rem;
+    }
+    .doc{
+        padding: 1rem;
+    }
+    .endpoints{
+        margin-top: 1rem;
+    }
+    .endpoints table{
+        width: 100px;
+        margin: 1rem 0;
     }
 }
