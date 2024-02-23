@@ -36,6 +36,10 @@ const recipeSchema = new Schema({
     stars: {
         type: Number,
         default: 0,
+    },
+    time: {
+        type: String,
+        require: true,
     }
 }, {
     timestamps: true,

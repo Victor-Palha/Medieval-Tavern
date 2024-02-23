@@ -12,6 +12,7 @@ export async function createRecipeController(req: Request, res:Response){
         instructions: z.array(z.string()),
         description: z.string(),
         image: z.string(),
+        time: z.string(),
     })
 
     const data = recipeSchema.parse(req.body);

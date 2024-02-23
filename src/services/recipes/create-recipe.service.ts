@@ -12,6 +12,7 @@ interface CreateRecipeRequest{
     description: string;
     image: string;
     userId: string;
+    time: string;
 }
 
 export class CreateRecipesService {
