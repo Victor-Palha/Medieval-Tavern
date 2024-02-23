@@ -6,7 +6,8 @@ export async function createUserController(req: Request, res: Response){
     const userSchema = z.object({
         name: z.string(),
         email: z.string().email(),
-        password: z.string().min(6)
+        password: z.string().min(6),
+        image: z.enum(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
     })
 
     const data = userSchema.parse(req.body);

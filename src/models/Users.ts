@@ -14,6 +14,11 @@ const userSchema = new Schema({
         type: String,
         require: true, 
     },
+    image: {
+        type: String,
+        default: "https://medieval-tavern-api.azurewebsites.net/images/default-user-image.jpeg",
+        require: true,
+    },
     myRecipes: [{
         type: Schema.Types.ObjectId,
         ref: "Recipes" // Atualizado para refletir o nome da coleção de receitas
