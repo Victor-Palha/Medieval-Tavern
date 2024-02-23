@@ -14,6 +14,10 @@ const userSchema = new Schema({
         type: String,
         require: true, 
     },
+    description: {
+        type: String,
+        default: "Sem descrição",
+    },
     image: {
         type: String,
         default: "https://medieval-tavern-api.azurewebsites.net/images/default-user-image.jpeg",

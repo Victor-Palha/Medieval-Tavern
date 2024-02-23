@@ -7,6 +7,7 @@ export async function createUserController(req: Request, res: Response){
         name: z.string(),
         email: z.string().email(),
         password: z.string().min(6),
+        description: z.string(),
         image: z.enum(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
     })
 

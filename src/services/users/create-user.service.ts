@@ -6,6 +6,7 @@ interface CreateUserRequest{
     name: string;
     email: string;
     password: string;
+    description: string;
     image: "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
 }
 
