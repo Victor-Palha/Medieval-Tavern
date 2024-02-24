@@ -6,7 +6,7 @@ export class GetUniqueRecipeService{
     ){}
 
     async execute(recipeId: string){
-        const recipe = await this.recipeModel.findById(recipeId);
+        const recipe = await this.recipeModel.findById(recipeId).populate({path: "createdBy", select: "name image"});
         if(!recipe){
             throw new Error("Receita não encontrada!");
         }

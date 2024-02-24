@@ -25,11 +25,11 @@ const userSchema = new Schema({
     },
     myRecipes: [{
         type: Schema.Types.ObjectId,
-        ref: "Recipes" // Atualizado para refletir o nome da coleção de receitas
+        ref: "Recipes"
     }],
     myFavorites: [{
         type: Schema.Types.ObjectId,
-        ref: "Recipes" // Atualizado para refletir o nome da coleção de receitas
+        ref: "Recipes"
     }]
 }, {
     timestamps: true,

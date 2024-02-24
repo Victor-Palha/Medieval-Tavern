@@ -12,7 +12,7 @@ export class SearchRecipesService{
                 { tags: { $regex: search, $options: 'i' } }, // Busca por tag
                 { origin: { $regex: search, $options: 'i' } } // Busca por origem
             ]
-        });
+        }).populate({path: "createdBy", select: "name image"});
 
         return {recipes};
     }

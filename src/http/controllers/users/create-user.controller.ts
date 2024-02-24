@@ -4,11 +4,11 @@ import { MakeCreateUserService } from "../../../services/factory/make-create-use
 
 export async function createUserController(req: Request, res: Response){
     const userSchema = z.object({
-        name: z.string(),
-        email: z.string().email(),
+        name: z.string().min(3),
+        email: z.string().email().min(1),
         password: z.string().min(6),
-        description: z.string(),
-        image: z.enum(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
+        description: z.string().default("Novo(a) chefe na área!"),
+        image: z.enum(["1", "2", "3", "4", "5", "6", "7", "8", "9"]).default("1")
     })
 
     const data = userSchema.parse(req.body);

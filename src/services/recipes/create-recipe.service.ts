@@ -28,7 +28,7 @@ export class CreateRecipesService {
             throw new Error("Ops! Você não está logado!");
         }
 
-        const recipe = await this.recipeModel.create(data);
+        const recipe = await this.recipeModel.create({createdBy: data.userId, ...data});
 
         await this.userModel.findByIdAndUpdate(userExists.id, {
             $push: {

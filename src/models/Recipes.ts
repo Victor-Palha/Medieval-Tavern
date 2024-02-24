@@ -40,6 +40,10 @@ const recipeSchema = new Schema({
     time: {
         type: String,
         require: true,
+    },
+    createdBy: {
+        type: Schema.Types.ObjectId,
+        ref: "Users",
     }
 }, {
     timestamps: true,

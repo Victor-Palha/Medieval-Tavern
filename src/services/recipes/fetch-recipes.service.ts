@@ -6,7 +6,7 @@ export class FetchRecipesService{
     ){}
 
     async execute(){
-        const recipes = await this.recipeModel.find();
+        const recipes = await this.recipeModel.find().populate({path: "createdBy", select: "name image"});
 
         return {recipes};
     }

@@ -6,7 +6,10 @@ export class FetchLatestsRecipesService{
     ){}
 
     async execute(){
-        const recipes = await this.recipeModel.find().sort({createdAt: "desc"}).limit(5);
+        const recipes = await this.recipeModel.find()
+            .sort({createdAt: "desc"})
+            .populate({path: "createdBy", select: "name image"})
+            .limit(5);
 
         return {recipes};
     }

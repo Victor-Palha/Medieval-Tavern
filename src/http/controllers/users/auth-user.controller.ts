@@ -4,7 +4,7 @@ import { makeAuthUserService } from "../../../services/factory/make-auth-user-se
 
 export async function authUserController(req: Request, res: Response){
     const authUserSchema = z.object({
-        email: z.string().email(),
+        email: z.string().email().min(1),
         password: z.string().min(6)
     })
 
