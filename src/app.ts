@@ -1,8 +1,9 @@
-import express from 'express';
+import "express-async-errors";
+import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import { routesRecipes } from './http/controllers/recipes/routes';
 import { routesUsers } from './http/controllers/users/routes';
-import path from 'node:path';
+import { ZodError } from 'zod';
 
 const app = express();
 
@@ -18,6 +19,25 @@ app.use(express.static(dir));
 // Routes
 app.use("/api/", routesRecipes);
 app.use("/api/", routesUsers);
+
+//Errors
+app.use((err:Error, _req:Request, res:Response, next: NextFunction)=>{
+    if(err instanceof ZodError){
+        //if are error
+        return res.status(400).json({
+            mesage: "Invalid data",
+            error: err.issues,
+        })
+    }
+
+    if(err instanceof Error){
+        //if are error
+        return res.status(500).json({
+            error: err.message
+        })
+    }
+    return res.status(500).json({status: "error", message:"Internal server error"})
+})
 
 
 export default app;
