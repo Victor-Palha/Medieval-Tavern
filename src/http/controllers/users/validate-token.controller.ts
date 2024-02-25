@@ -7,7 +7,7 @@ export async function validateTokenController(req: Request, res: Response){
     const service = makeGetUserProfileService();
 
     try {
-        const {_id, name, image} = await service.execute(id);
+        const {_id, name, image } = await service.execute(id);
 
         return res.status(200).json({_id, name, image});
 

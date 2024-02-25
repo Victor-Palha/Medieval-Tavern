@@ -1,3 +1,4 @@
+import { Types } from "mongoose";
 import { User } from "../../models/Users";
 
 type GetUserProfileServiceResponse = {
@@ -6,6 +7,7 @@ type GetUserProfileServiceResponse = {
     image: string;
     amount_of_recipes: number;
     _id: string;
+    myRecipes: Types.ObjectId[];
 }
 
 export class GetUserProfileService{
@@ -14,7 +16,7 @@ export class GetUserProfileService{
     ){}
 
     async execute(id: string): Promise<GetUserProfileServiceResponse>{
-        const user = await this.userModel.findById(id);
+        const user = await this.userModel.findById(id).populate("myRecipes");
 
         if(!user){
             throw new Error("Usuário não encontrado!");
@@ -25,6 +27,7 @@ export class GetUserProfileService{
             image: user.image,
             amount_of_recipes: user.myRecipes.length,
             _id: user.id as string,
+            myRecipes: user.myRecipes
         }
         return response;
     }

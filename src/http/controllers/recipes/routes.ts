@@ -13,7 +13,7 @@ routesRecipes
 .post("/recipes", jwtMiddleware, createRecipeController)
 .get("/recipes", fetchRecipesController)
 .get("/recipes/latests", fetchLastestsRecipesController)
-.get("/recipes/from/:id", fetchMyRecipesController)
+// .get("/recipes/from/:id", fetchMyRecipesController)
 .get("/recipes/search", searchRecipesController)
 .get("/recipes/:id", getUniqueRecipeController)
 

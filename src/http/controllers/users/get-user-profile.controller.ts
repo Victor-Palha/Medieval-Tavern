@@ -12,7 +12,7 @@ export async function GetUserProfileController(req: Request, res: Response){
         const {id} = getUserProfileSchema.parse(req.params);
         const response = await service.execute(id);
 
-        return res.json(response);
+        return res.json({profile: response});
         
     } catch (error) {
         if(error instanceof Error){
