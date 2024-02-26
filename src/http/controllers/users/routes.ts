@@ -7,15 +7,17 @@ import { fetchMyFavoritesRecipesController } from "./fetch-my-favorites-recipes.
 import { fetchDefaultImagesController } from "./fetch-default-images.controller";
 import { GetUserProfileController } from "./get-user-profile.controller";
 import { validateTokenController } from "./validate-token.controller";
+import { updateUserProfileController } from "./update-user-profile.controller";
 
 const routesUsers = Router();
 routesUsers
 .post("/signup", createUserController)
 .post("/signin", authUserController)
 .get("/profile/:id", GetUserProfileController)
+.put("/profile/update", jwtMiddleware, updateUserProfileController)
 .get("/imgs", fetchDefaultImagesController)
 .patch("/recipes/star/:id", jwtMiddleware, giveStartToRecipeController)
-.get("/recipes/my-favorites", jwtMiddleware, fetchMyFavoritesRecipesController)
+.get("/recipes/favorite/:id", fetchMyFavoritesRecipesController)
 .get("/auth/validate", jwtMiddleware, validateTokenController)
 
 export { routesUsers }

@@ -27,9 +27,6 @@ export class CreateUserService{
         let image: DefaultImages = DefaultImages.default;
 
         switch(data.image){
-            case "1":
-                image = DefaultImages.default;
-                break;
             case "2":
                 image = DefaultImages.manElf1;
                 break;
@@ -53,6 +50,9 @@ export class CreateUserService{
                 break;
             case "9":
                 image = DefaultImages.womanTiefling;
+                break;
+            default:
+                image = DefaultImages.default;
                 break;
         }
 

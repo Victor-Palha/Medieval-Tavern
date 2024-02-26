@@ -8,6 +8,7 @@ type GetUserProfileServiceResponse = {
     amount_of_recipes: number;
     _id: string;
     myRecipes: Types.ObjectId[];
+    myFavorites: Types.ObjectId[];
 }
 
 export class GetUserProfileService{
@@ -27,7 +28,8 @@ export class GetUserProfileService{
             image: user.image,
             amount_of_recipes: user.myRecipes.length,
             _id: user.id as string,
-            myRecipes: user.myRecipes
+            myRecipes: user.myRecipes,
+            myFavorites: user.myFavorites
         }
         return response;
     }
