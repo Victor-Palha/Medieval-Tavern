@@ -1,5 +1,16 @@
-import { Schema, model } from "mongoose";
-import { recipeSchema } from "./Recipes";
+import { Document, Schema, Types, model } from "mongoose";
+
+interface User {
+    name: string;
+    email: string;
+    password: string;
+    description: string;
+    image: string;
+    myRecipes: Types.ObjectId[];
+    myFavorites: Types.ObjectId[];
+}
+
+interface UserDocument extends User, Document {}
 
 const userSchema = new Schema({
     name: {
@@ -25,19 +36,22 @@ const userSchema = new Schema({
     },
     myRecipes: [{
         type: Schema.Types.ObjectId,
-        ref: "Recipes"
+        ref: "Recipes",
+        default: []
     }],
     myFavorites: [{
         type: Schema.Types.ObjectId,
-        ref: "Recipes"
+        ref: "Recipes",
+        default: []
     }]
 }, {
     timestamps: true,
 })
 
-const User = model("Users", userSchema);
+const User = model<UserDocument>("Users", userSchema);
 
 export {
     User,
-    userSchema
+    userSchema,
+    UserDocument
 };

@@ -1,4 +1,20 @@
-import { Schema, model } from "mongoose";
+import { Schema, Types, model } from "mongoose";
+
+interface Recipe {
+    name: string;
+    origin: string;
+    tags: string[];
+    serves: number;
+    ingredients: string[];
+    instructions: string[];
+    description: string;
+    image: string;
+    stars: number;
+    time: string;
+    createdBy: Types.ObjectId;
+}
+
+interface RecipeDocument extends Recipe, Document {}
 
 const recipeSchema = new Schema({
     name: {
@@ -53,5 +69,6 @@ const Recipe = model("Recipes", recipeSchema);
 
 export {
     Recipe,
-    recipeSchema
+    recipeSchema,
+    RecipeDocument
 };

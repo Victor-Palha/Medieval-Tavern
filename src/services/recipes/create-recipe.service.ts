@@ -1,4 +1,3 @@
-import { Model } from "mongoose";
 import { Recipe } from "../../models/Recipes";
 import { User } from "../../models/Users";
 

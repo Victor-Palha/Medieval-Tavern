@@ -23,7 +23,7 @@ export class GetUserProfileService{
             throw new Error("Usuário não encontrado!");
         }
         const response: GetUserProfileServiceResponse = {
-            name: user.name as string,
+            name: user.name,
             description: user.description,
             image: user.image,
             amount_of_recipes: user.myRecipes.length,
