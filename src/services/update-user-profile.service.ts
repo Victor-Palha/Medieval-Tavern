@@ -1,5 +1,5 @@
-import { User } from "../../models/Users";
-import { DefaultImages } from "../../models/images";
+import { DefaultImages } from "../models/images";
+import { UserInterfaceRepository } from "../repositories/user-interface.repository";
 
 type UpdateUserProfileRequest = {
     userId: string;
@@ -10,11 +10,11 @@ type UpdateUserProfileRequest = {
 
 export class UpdateUserProfileService{
     constructor(
-        private userModel: typeof User
+        private userModel: UserInterfaceRepository
     ){}
 
     async execute({userId, name, description, image}: UpdateUserProfileRequest){
-        const user = await this.userModel.findById(userId);
+        const user = await this.userModel.findUserById(userId);
 
         if(!user){
             throw new Error("Ops, Usuário não encontrado!");
@@ -55,13 +55,16 @@ export class UpdateUserProfileService{
             }
         }
 
-        user.name = name;
-        user.description = description;
-        user.image = newImage;
+        const updatedUser = this.userModel.updateUserProfile({
+            id: userId,
+            name,
+            description,
+            image: newImage
+        })
 
-        await user.save();
-
-        return {user};
+        return {
+            updatedUser
+        };
 
     }
 }

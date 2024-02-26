@@ -1,8 +1,9 @@
 import { Recipe } from "../../models/Recipes";
-import { User } from "../../models/Users";
-import { DeleteRecipeService } from "../recipes/delete-recipe.service";
+import { RecipeRepository } from "../../repositories/ORMRepository/recipe.repository";
+import { DeleteRecipeService } from "../delete-recipe.service";
 
 export function makeDeleteRecipeService(){
-    const service = new DeleteRecipeService(Recipe)
+    const recipeRepository = new RecipeRepository(Recipe)
+    const service = new DeleteRecipeService(recipeRepository)
     return service;
 }

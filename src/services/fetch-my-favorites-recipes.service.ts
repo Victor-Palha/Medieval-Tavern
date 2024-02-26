@@ -1,12 +1,12 @@
-import { User } from "../../models/Users";
+import { UserInterfaceRepository } from "../repositories/user-interface.repository";
 
 export class FetchMyFavoritesRecipesService{
     constructor(
-        private userModel: typeof User
+        private userModel: UserInterfaceRepository
     ){}
 
     async execute(userId: string){
-        const user = await this.userModel.findById(userId).populate('myFavorites');
+        const user = await this.userModel.findUserByIdWithFavorites(userId);
         if(!user){
             throw new Error("Ops! Usuário não encontrado!");
         }

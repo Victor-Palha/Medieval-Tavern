@@ -1,5 +1,5 @@
 import { Model } from "mongoose";
-import { RecipeDocument } from "../../models/Recipes";
+import { Recipe, RecipeDocument } from "../../models/Recipes";
 import { RecipeInterfaceRepository } from "../recipe-interface.repository";
 
 export class RecipeRepository implements RecipeInterfaceRepository{
@@ -9,13 +9,13 @@ export class RecipeRepository implements RecipeInterfaceRepository{
 
     /**
      * 
-     * @param data RecipeDocument
+     * @param data Recipe
      * @description 
      * Create a new recipe
      * @returns
-     * Promise<RecipeDocument> 
+     * Promise<Recipe> 
      */
-    async createNewRecipe(data: RecipeDocument) {
+    async createNewRecipe(data: Omit<Recipe, "stars">) {
         const recipe = await this.recipeModel.create(data);
         return recipe;    
     }

@@ -4,10 +4,15 @@ type FindUserAndRecipesById = {
     userId: string;
     recipeId: string;
 }
+type CreateUserRequest = {
+    name: string;
+    email: string;
+    password: string;
+}
 
 export interface UserInterfaceRepository{
     findUserByEmail(email: string): Promise<UserDocument | null>;
-    createUser(data: Omit<UserDocument, "id" | "image" | "description" | "myRecipes" | "myFavorites">): Promise<UserDocument>;
+    createUser(data: CreateUserRequest): Promise<UserDocument>;
     findUserById(id: string): Promise<UserDocument | null>;
     findUserByIdWithRecipes(id: string): Promise<UserDocument | null>;
     findUserByIdWithFavorites(id: string): Promise<UserDocument | null>;

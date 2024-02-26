@@ -7,12 +7,12 @@ export async function giveStartToRecipeController(req: Request, res: Response){
     const service = makeGiveStartToRecipeService();
 
     try {
-        const {recipeResponse} = await service.execute(
-            id,
-            req.user_id.sub
-        )
+        await service.execute({
+            recipeId: id,
+            userId: req.user_id.sub
+        })
 
-        return res.status(200).json({message: recipeResponse});
+        return res.status(204).json();
     } catch (error) {
         if(error instanceof Error){
             return res.status(404).json({message: error.message});

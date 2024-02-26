@@ -1,7 +1,7 @@
 import { compare } from "bcryptjs";
-import { User } from "../../models/Users";
 import { sign } from "jsonwebtoken";
-import { env } from "../../config/env";
+import { env } from "../config/env";
+import { UserInterfaceRepository } from "../repositories/user-interface.repository";
 
 interface AuthUserRequest{
     email: string;
@@ -10,19 +10,17 @@ interface AuthUserRequest{
 
 export class AuthUserService {
     constructor(
-        private userModel: typeof User
+        private userModel: UserInterfaceRepository
     ){}
 
-    async execute(data: AuthUserRequest){
-        const userExists = await this.userModel.findOne({
-            email: data.email
-        })
+    async execute({email, password}: AuthUserRequest){
+        const userExists = await this.userModel.findUserByEmail(email);
 
         if(!userExists){
             throw new Error("Ops! Este email não está cadastrado! Se você não tem uma conta, cadastre-se!");
         }
 
-        const passwordMatch = await compare(data.password, userExists.password as string);
+        const passwordMatch = await compare(password, userExists.password as string);
 
         if(!passwordMatch){
             throw new Error("Ops! Senha ou e-mail incorretos!");

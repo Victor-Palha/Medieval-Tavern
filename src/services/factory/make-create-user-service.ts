@@ -1,8 +1,10 @@
 import { User } from "../../models/Users";
-import { CreateUserService } from "../users/create-user.service";
+import { UserRepository } from "../../repositories/ORMRepository/user.repository";
+import { CreateUserService } from "../create-user.service";
 
 export function MakeCreateUserService() {
-    const service = new CreateUserService(User);
+    const userRepository = new UserRepository(User)
+    const service = new CreateUserService(userRepository);
 
     return service;
 }

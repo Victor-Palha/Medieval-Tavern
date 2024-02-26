@@ -33,10 +33,14 @@ export class UserRepository implements UserInterfaceRepository {
      * @returns 
      * UserDocument
      */
-    async createUser(data: Omit<UserDocument, "id" | "image" | "description" | "myRecipes" | "myFavorites">){
+    async createUser(data: {name: string, email: string, password: string}){
         const user = await this.userModel.create(data);
 
-        return user;
+        return {
+            // @ts-ignore
+            password: undefined,
+            ...user
+        } as UserDocument;
     }
 
     /**

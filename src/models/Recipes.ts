@@ -1,4 +1,4 @@
-import { Schema, Types, model } from "mongoose";
+import { Document, Schema, Types, model } from "mongoose";
 
 interface Recipe {
     name: string;
@@ -65,7 +65,7 @@ const recipeSchema = new Schema({
     timestamps: true,
 })
 
-const Recipe = model("Recipes", recipeSchema);
+const Recipe = model<RecipeDocument>("Recipes", recipeSchema);
 
 export {
     Recipe,

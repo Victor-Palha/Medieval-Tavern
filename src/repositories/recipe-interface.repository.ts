@@ -1,7 +1,7 @@
-import { RecipeDocument } from "../models/Recipes";
+import { Recipe, RecipeDocument } from "../models/Recipes";
 
 export interface RecipeInterfaceRepository{
-    createNewRecipe(data: RecipeDocument): Promise<RecipeDocument>
+    createNewRecipe(data: Omit<Recipe, "stars">): Promise<RecipeDocument>
     deleteRecipe(recipeId: string, userId: string): Promise<void>
     fetchBestRecipes(): Promise<RecipeDocument[]>
     fetchAllRecipes(): Promise<RecipeDocument[]>

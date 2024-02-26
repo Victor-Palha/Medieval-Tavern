@@ -1,7 +1,9 @@
 import { User } from "../../models/Users";
-import { FetchMyFavoritesRecipesService } from "../users/fetch-my-favorites-recipes.service";
+import { UserRepository } from "../../repositories/ORMRepository/user.repository";
+import { FetchMyFavoritesRecipesService } from "../fetch-my-favorites-recipes.service";
 
 export function makeFetchMyFavoritesRecipesService(){
-    const service = new FetchMyFavoritesRecipesService(User);
+    const userRepository = new UserRepository(User)
+    const service = new FetchMyFavoritesRecipesService(userRepository);
     return service;
 }

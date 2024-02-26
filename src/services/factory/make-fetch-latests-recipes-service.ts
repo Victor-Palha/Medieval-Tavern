@@ -1,7 +1,9 @@
 import { Recipe } from "../../models/Recipes";
-import { FetchLatestsRecipesService } from "../recipes/fetch-lastests-recipes.service";
+import { RecipeRepository } from "../../repositories/ORMRepository/recipe.repository";
+import { FetchLatestsRecipesService } from "../fetch-lastests-recipes.service";
 
 export function makeFetchLatestRecipesService(){
-    const service = new FetchLatestsRecipesService(Recipe);
+    const recipeRepository = new RecipeRepository(Recipe)
+    const service = new FetchLatestsRecipesService(recipeRepository);
     return service;
 }

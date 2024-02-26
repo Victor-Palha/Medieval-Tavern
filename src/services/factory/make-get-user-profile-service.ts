@@ -1,7 +1,9 @@
 import { User } from "../../models/Users";
-import { GetUserProfileService } from "../users/get-user-profile.service";
+import { UserRepository } from "../../repositories/ORMRepository/user.repository";
+import { GetUserProfileService } from "../get-user-profile.service";
 
 export function makeGetUserProfileService(){
-    const service = new GetUserProfileService(User);
+    const userRepository = new UserRepository(User)
+    const service = new GetUserProfileService(userRepository);
     return service;
 }

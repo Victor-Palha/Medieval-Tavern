@@ -1,7 +1,9 @@
 import { User } from "../../models/Users";
-import { AuthUserService } from "../users/auth-user.service";
+import { UserRepository } from "../../repositories/ORMRepository/user.repository";
+import { AuthUserService } from "../auth-user.service";
 
 export function makeAuthUserService() {
-    const service = new AuthUserService(User)
+    const userRepository = new UserRepository(User)
+    const service = new AuthUserService(userRepository)
     return service
 }

@@ -1,5 +1,5 @@
 import { Types } from "mongoose";
-import { User } from "../../models/Users";
+import { UserRepository } from "../repositories/ORMRepository/user.repository";
 
 type GetUserProfileServiceResponse = {
     name: string;
@@ -13,24 +13,24 @@ type GetUserProfileServiceResponse = {
 
 export class GetUserProfileService{
     constructor(
-        private readonly userModel: typeof User
+        private userModel: UserRepository
     ){}
 
     async execute(id: string): Promise<GetUserProfileServiceResponse>{
-        const user = await this.userModel.findById(id).populate("myRecipes");
+        const user = await this.userModel.findUserByIdWithRecipes(id);
 
         if(!user){
             throw new Error("Usuário não encontrado!");
         }
-        const response: GetUserProfileServiceResponse = {
+
+        return {
+            _id: user.id,
             name: user.name,
-            description: user.description,
             image: user.image,
+            description: user.description,
             amount_of_recipes: user.myRecipes.length,
-            _id: user.id as string,
             myRecipes: user.myRecipes,
             myFavorites: user.myFavorites
-        }
-        return response;
+        };
     }
 }
