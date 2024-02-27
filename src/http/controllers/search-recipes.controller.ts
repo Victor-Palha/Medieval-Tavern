@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { z } from "zod";
-import { makeSearchRecipesService } from "../../../services/factory/make-search-recipes-service";
+import { makeSearchRecipesService } from "../../services/factory/make-search-recipes-service";
 
 export async function searchRecipesController(req: Request, res: Response){
     const searchSchema = z.object({

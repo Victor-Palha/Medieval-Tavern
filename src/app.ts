@@ -1,9 +1,8 @@
 import "express-async-errors";
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
-import { routesRecipes } from './http/controllers/recipes/routes';
-import { routesUsers } from './http/controllers/users/routes';
 import { ZodError } from 'zod';
+import { appRoutes } from "./http/controllers/routes";
 
 const app = express();
 
@@ -17,8 +16,7 @@ app.use(express.json());
 app.use(express.static(dir));
 
 // Routes
-app.use("/api/", routesRecipes);
-app.use("/api/", routesUsers);
+app.use("/api/", appRoutes);
 
 //Errors
 app.use((err:Error, _req:Request, res:Response, next: NextFunction)=>{

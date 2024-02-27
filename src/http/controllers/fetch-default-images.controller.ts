@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { DefaultImages } from "../../../models/images";
+import { DefaultImages } from "../../models/images";
 
 export function fetchDefaultImagesController(_req: Request, res: Response){
     const images = [

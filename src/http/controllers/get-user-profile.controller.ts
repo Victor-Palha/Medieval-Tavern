@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { makeGetUserProfileService } from "../../../services/factory/make-get-user-profile-service";
+import { makeGetUserProfileService } from "../../services/factory/make-get-user-profile-service";
 import z from "zod";
 
 export async function GetUserProfileController(req: Request, res: Response){

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { z } from "zod";
-import { MakeCreateRecipeService } from "../../../services/factory/make-create-recipe-service";
+import { MakeCreateRecipeService } from "../../services/factory/make-create-recipe-service";
 
 export async function createRecipeController(req: Request, res:Response){
     const recipeSchema = z.object({

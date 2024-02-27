@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { makeFetchMyFavoritesRecipesService } from "../../../services/factory/make-fetch-my-favorites-recipes-service";
+import { makeFetchMyFavoritesRecipesService } from "../../services/factory/make-fetch-my-favorites-recipes-service";
 import z from "zod";
 
 export async function fetchMyFavoritesRecipesController(req:Request, res:Response){

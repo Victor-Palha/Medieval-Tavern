@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { makeGetUserProfileService } from "../../../services/factory/make-get-user-profile-service";
+import { makeGetUserProfileService } from "../../services/factory/make-get-user-profile-service";
 
 export async function validateTokenController(req: Request, res: Response){
 

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import z from "zod";
-import { makeUpdateUserProfileService } from "../../../services/factory/make-update-user-profile-service";
+import { makeUpdateUserProfileService } from "../../services/factory/make-update-user-profile-service";
 
 export function updateUserProfileController(req: Request, res: Response){
     const updateProfileSchema = z.object({

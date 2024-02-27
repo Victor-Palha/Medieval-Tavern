@@ -91,7 +91,8 @@ export class UserRepository implements UserInterfaceRepository {
      * This method adds a favorite recipe to the user profile
      */
     async addFavoriteRecipeToUserProfile({userId, recipeId}: {userId: string, recipeId: string}){
-        const user = await this.userModel.findByIdAndUpdate(userId, {
+        console.log(userId, recipeId);
+        await this.userModel.findByIdAndUpdate(userId, {
             $push: {
                 myFavorites: recipeId
             }

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { z } from "zod";
-import { makeAuthUserService } from "../../../services/factory/make-auth-user-service";
+import { makeAuthUserService } from "../../services/factory/make-auth-user-service";
 
 export async function authUserController(req: Request, res: Response){
     const authUserSchema = z.object({

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { makeGetUniqueRecipeService } from "../../../services/factory/make-get-unique-recipe-service";
+import { makeGetUniqueRecipeService } from "../../services/factory/make-get-unique-recipe-service";
 
 export async function getUniqueRecipeController(req: Request, res: Response){
     const recipeId = req.params.id;

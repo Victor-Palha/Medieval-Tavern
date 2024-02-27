@@ -27,13 +27,19 @@ export class GiveStarToRecipeService{
         }
 
         const hasThisRecipeAlreadyStarredByUser = userSearched.myFavorites.includes(recipeSearched.id);
-
+        console.log(hasThisRecipeAlreadyStarredByUser);
         if(hasThisRecipeAlreadyStarredByUser){
             this.recipeModel.removeStarToRecipe(recipeSearched.id);
-            this.userModel.deleteFavoriteRecipeFromUserProfile(recipeSearched.id);
+            this.userModel.deleteFavoriteRecipeFromUserProfile({
+                userId: userSearched.id,
+                recipeId: recipeSearched.id
+            });
         }else{
             this.recipeModel.addStarToRecipe(recipeSearched.id);
-            this.userModel.addFavoriteRecipeToUserProfile(recipeSearched.id);
+            this.userModel.addFavoriteRecipeToUserProfile({
+                userId: userSearched.id,
+                recipeId: recipeSearched.id
+            });
         }
     }
 }

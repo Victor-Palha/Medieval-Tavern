@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { makeGiveStartToRecipeService } from "../../../services/factory/make-give-start-to-recipe-service";
+import { makeGiveStartToRecipeService } from "../../services/factory/make-give-start-to-recipe-service";
 
 export async function giveStartToRecipeController(req: Request, res: Response){
     const id = req.params.id;
