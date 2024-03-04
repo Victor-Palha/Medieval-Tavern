@@ -54,26 +54,32 @@
                     <td>Não</td>
                 </tr>
                 <tr>
-                    <td>/recipes</td>
-                    <td>Cria uma receita</td>
-                    <td>POST</td>
-                    <td>Sim</td>
-                </tr>
-                <tr>
-                    <td>/recipes/my</td>
-                    <td>Mostra todas as receitas que o usuário criou</td>
+                    <td>/profile/:id</td>
+                    <td>Pega informações de um usuário</td>
                     <td>GET</td>
+                    <td>Não</td>
+                </tr>
+                <tr>
+                    <td>/profile/update</td>
+                    <td>Atualiza informações do usuário</td>
+                    <td>PUT</td>
                     <td>Sim</td>
                 </tr>
                 <tr>
-                    <td>/recipes/my-favorites</td>
-                    <td>Mostra todas as receitas que o usuário deu estrela</td>
+                    <td>/imgs</td>
+                    <td>Mostra todas as imagens de perfil</td>
+                    <td>GET</td>
+                    <td>Não</td>
+                </tr>
+                <tr>
+                    <td>/recipes/favorite/:id</td>
+                    <td>Mostra todas as receitas favoritas de um usuário</td>
                     <td>GET</td>
                     <td>Sim</td>
                 </tr>
                 <tr>
                     <td>/recipes/star/:id</td>
-                    <td>Dá uma estrela para uma receita</td>
+                    <td>Adiciona ou remove uma receita dos favoritos</td>
                     <td>PATCH</td>
                     <td>Sim</td>
                 </tr>
@@ -90,6 +96,18 @@
                 </tr>
                 <tr>
                     <td>/recipes</td>
+                    <td>Cria uma receita</td>
+                    <td>POST</td>
+                    <td>Sim</td>
+                </tr>
+                <tr>
+                    <td>/recipes/image</td>
+                    <td>Adiciona uma imagem ao servidor e retorna uma URL</td>
+                    <td>POST</td>
+                    <td>Sim</td>
+                </tr>
+                <tr>
+                    <td>/recipes</td>
                     <td>Busca todas as receitas criadas</td>
                     <td>GET</td>
                     <td>Não</td>
@@ -101,8 +119,20 @@
                     <td>Não</td>
                 </tr>
                 <tr>
+                    <td>/recipes/:id</td>
+                    <td>Deleta uma receita/td>
+                    <td>DELETE</td>
+                    <td>Sim</td>
+                </tr>
+                <tr>
                     <td>/recipes/search</td>
                     <td>Busca uma receita atráves do query param 'q'</td>
+                    <td>GET</td>
+                    <td>Não</td>
+                </tr>
+                <tr>
+                    <td>/recipes/latests</td>
+                    <td>Busca todas as últimas receitas publicadas</td>
                     <td>GET</td>
                     <td>Não</td>
                 </tr>
